@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      host: 546.465.445
+      port: 27017
+      authentication-database: admin
+      username: qweqwe
+      password: 123
+      database: qwerqwer
+      # uri: mongodb: //546.465.445:27017/qwerqwer
