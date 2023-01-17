@@ -42,6 +42,12 @@ public class GameAPIController {
 		return new ResponseEntity<>(findByID,HttpStatus.OK);
 	}
 
+	@GetMapping("/api/v1/gamelist")
+	public void getGameInfoAll(){
+		List<Game> byAll = gameService.findByAll();
+		System.out.println(byAll);
+	}
+
 	@GetMapping("/api/v1/game/find/developer/{developer}")
 	public ResponseEntity<List<Game>> getGameInfoByDeveloper(@PathVariable String developer){
 		List<Game> byDeveloper = gameService.findByDeveloper(developer);

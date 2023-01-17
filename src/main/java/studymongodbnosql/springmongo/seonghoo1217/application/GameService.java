@@ -39,6 +39,10 @@ public class GameService {
 		return return_List;
 	}
 
+	public List<Game> findByAll(){
+		return gameRepository.findAll();
+	}
+
 	public Game findById(String id){
 		return gameRepository.findById(id).get();
 	}
