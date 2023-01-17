@@ -3,8 +3,5 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      authentication-database: admin
-      username: admin
-      password: 123
       database: testdb
       # uri: mongodb: //546.465.445:27017/qwerqwer
