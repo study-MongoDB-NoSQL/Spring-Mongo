@@ -1,13 +1,20 @@
 package studymongodbnosql.springmongo.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import studymongodbnosql.springmongo.dto.CustomerResponseDto;
 
 @Document(collection = "customer")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
+
     @Id
     private String id;
-
     private String firstName;
     private String lastName;
 
@@ -16,31 +23,7 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+    public CustomerResponseDto toDto() {
+        return new CustomerResponseDto(id, firstName, lastName);
     }
 }
