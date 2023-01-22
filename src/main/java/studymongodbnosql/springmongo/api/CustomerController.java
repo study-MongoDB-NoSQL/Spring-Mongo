@@ -42,7 +42,7 @@ public class CustomerController {
     }
 
     @GetMapping("/find/all")
-    public ResponseEntity<?> findCustomerByFirstName() {
+    public ResponseEntity<?> findAllCustomer() {
         try {
             List<CustomerResponseDto> customerResponseDtoList = customerService.findAllCustomer();
             return new ResponseEntity<>(customerResponseDtoList, HttpStatus.OK);
