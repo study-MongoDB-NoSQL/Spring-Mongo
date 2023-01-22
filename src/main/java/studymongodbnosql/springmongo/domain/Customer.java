@@ -23,6 +23,10 @@ public class Customer {
         this.lastName = lastName;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public CustomerResponseDto toDto() {
         return new CustomerResponseDto(id, firstName, lastName);
     }

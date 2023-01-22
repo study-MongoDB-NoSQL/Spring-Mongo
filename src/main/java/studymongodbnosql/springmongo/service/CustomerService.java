@@ -29,4 +29,12 @@ public class CustomerService {
 
         return result;
     }
+
+    public CustomerResponseDto updateCustomer(CustomerRequestDto customerRequestDto, String id) {
+        Customer customer = customerRequestDto.toEntity();
+        customer.setId(id);
+        Customer savedCustomer = customerRepository.save(customer);
+
+        return savedCustomer.toDto();
+    }
 }
