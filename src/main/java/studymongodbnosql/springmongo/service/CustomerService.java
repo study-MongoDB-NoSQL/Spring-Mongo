@@ -30,6 +30,16 @@ public class CustomerService {
         return result;
     }
 
+    public List<CustomerResponseDto> findAllCustomer() {
+        List<Customer> customerList = customerRepository.findAll();
+        List<CustomerResponseDto> result = new ArrayList<>();
+        customerList.stream().forEach(c -> {
+            result.add(c.toDto());
+        });
+
+        return result;
+    }
+
     public CustomerResponseDto updateCustomer(CustomerRequestDto customerRequestDto, String id) {
         Customer customer = customerRequestDto.toEntity();
         customer.setId(id);

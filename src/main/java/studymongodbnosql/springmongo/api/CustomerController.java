@@ -41,6 +41,17 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("/find/all")
+    public ResponseEntity<?> findCustomerByFirstName() {
+        try {
+            List<CustomerResponseDto> customerResponseDtoList = customerService.findAllCustomer();
+            return new ResponseEntity<>(customerResponseDtoList, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@RequestBody CustomerRequestDto customerRequestDto, @PathVariable String id) {
         try {
