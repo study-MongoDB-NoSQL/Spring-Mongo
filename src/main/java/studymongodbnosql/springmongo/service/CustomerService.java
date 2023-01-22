@@ -37,4 +37,13 @@ public class CustomerService {
 
         return savedCustomer.toDto();
     }
+
+    public boolean deleteCustomer(String id) {
+        try {
+            customerRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

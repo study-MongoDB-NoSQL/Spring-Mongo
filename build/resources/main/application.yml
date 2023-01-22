@@ -5,3 +5,4 @@ spring:
       port: 27017
       authentication-database: admin
       database: test
+      #uri: mongodb://localhost:27017/test

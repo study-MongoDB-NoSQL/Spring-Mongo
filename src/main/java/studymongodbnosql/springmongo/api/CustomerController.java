@@ -1,6 +1,7 @@
 package studymongodbnosql.springmongo.api;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/customer")
 public class CustomerController {
     private final CustomerService customerService;
@@ -23,6 +25,7 @@ public class CustomerController {
             CustomerResponseDto customerResponseDto = customerService.saveCustomer(customerRequestDto);
             return new ResponseEntity<>(customerResponseDto, HttpStatus.OK);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -33,6 +36,7 @@ public class CustomerController {
             List<CustomerResponseDto> customerResponseDtoList = customerService.findCustomerByFirstName(firstName);
             return new ResponseEntity<>(customerResponseDtoList, HttpStatus.OK);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -43,6 +47,21 @@ public class CustomerController {
             CustomerResponseDto customerResponseDto = customerService.updateCustomer(customerRequestDto, id);
             return new ResponseEntity<>(customerResponseDto, HttpStatus.OK);
         } catch (Exception e) {
+            log.error(e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id) {
+        try {
+            boolean isDeleteSuccess = customerService.deleteCustomer(id);
+            if(isDeleteSuccess) {
+                return new ResponseEntity<>(id+" 유저 삭제 완료",HttpStatus.OK);
+            }
+            return new ResponseEntity<>("유저 삭제 실패", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            log.error(e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
