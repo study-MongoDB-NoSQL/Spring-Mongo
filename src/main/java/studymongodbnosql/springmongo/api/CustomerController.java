@@ -19,7 +19,6 @@ public class CustomerController {
     @PostMapping("/save")
     public ResponseEntity<?> saveCustomer(@RequestBody CustomerRequestDto customerRequestDto) {
         try {
-            System.out.println("customerRequestDto = " + customerRequestDto.getFirstName());
             CustomerResponseDto customerResponseDto = customerService.saveCustomer(customerRequestDto);
             return new ResponseEntity<>(customerResponseDto, HttpStatus.OK);
         } catch (Exception e) {
